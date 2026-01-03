@@ -1,34 +1,38 @@
 /* src/index.css */
 :root {
   --primary: #00ff41;
-  --bg-dark: #0a0a0a; /* Almost Black */
-  --bg-card: #111111; /* Slightly lighter for cards */
+  --bg-dark: #0a0a0a;
+  /* Almost Black */
+  --bg-card: #111111;
+  /* Slightly lighter for cards */
   --text-main: #ffffff;
   --text-muted: #a0a0a0;
   --font-main: 'Inter', sans-serif;
 }
 
 html {
-  scroll-behavior: smooth; /* <--- ADD THIS LINE HERE */
+  scroll-behavior: smooth;
 }
 
 /* --- FOOTER SPECIFIC MOBILE FIXES --- */
 @media (max-width: 768px) {
-  
+
   /* 1. Force the Flex container to stack vertically */
   footer .container {
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
     justify-content: center !important;
-    gap: 30px !important; /* Space between the two text blocks */
+    gap: 30px !important;
+    /* Space between the two text blocks */
   }
 
   /* 2. Target the distinct sections inside the footer */
   /* This targets the Left Side (Brand) and Right Side (Contact) */
-  footer .container > div {
+  footer .container>div {
     width: 100% !important;
-    text-align: center !important; /* Forces text to center */
+    text-align: center !important;
+    /* Forces text to center */
     margin: 0 !important;
   }
 
@@ -42,27 +46,31 @@ html {
 
 /* Tablet & Mobile (Below 768px) */
 @media (max-width: 768px) {
-  
+
   /* 1. Navbar Adjustments */
   .desktop-menu {
-    display: none !important; /* Hide the row of links */
+    display: none !important;
+    /* Hide the row of links */
   }
-  
+
   /* We need to target the internal div for the icon inside Navbar.jsx */
   /* Since we used inline styles, we rely on the class name we added */
   nav .mobile-icon {
-    display: block !important; /* Show hamburger icon */
+    display: block !important;
+    /* Show hamburger icon */
   }
 
   /* 2. Hero Adjustments */
   section#home h1 {
-    font-size: 2.5rem !important; /* Smaller headline */
+    font-size: 2.5rem !important;
+    /* Smaller headline */
   }
+
   section#home p {
     font-size: 1rem !important;
     padding: 0 15px;
   }
-  
+
   /* Stack the buttons vertically on mobile */
   section#home div[style*="display: flex"] {
     flex-direction: column;
@@ -74,7 +82,7 @@ html {
   .container {
     padding: 0 20px;
   }
-  
+
   /* 4. Team & Services Grid Fixes */
   /* This forces grids to be 1 column on mobile */
   section#services div[style*="grid-template-columns"],
@@ -83,13 +91,14 @@ html {
     flex-direction: column !important;
     align-items: center !important;
   }
-  
+
   /* 5. Footer Alignment */
   footer .container {
     flex-direction: column;
     text-align: center;
     gap: 20px;
   }
+
   footer div {
     text-align: center !important;
   }
@@ -120,9 +129,11 @@ button {
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-track {
   background: var(--bg-dark);
 }
+
 ::-webkit-scrollbar-thumb {
   background: var(--primary);
   border-radius: 4px;

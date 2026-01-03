@@ -6,19 +6,19 @@ const Footer = () => {
     <footer id="contact" style={styles.footer}>
       {/* We use the 'footer-content' class to target it in CSS easily */}
       <div className="container footer-content" style={styles.flexContainer}>
-        
+
         {/* Left Side: Brand & Copyright */}
         <div style={styles.leftSection}>
           <h3 style={styles.brand}>404 FOUND</h3>
           <p style={styles.copy}>
-            &copy; 2026 CodeCrafters Collective. <br />
+            &copy; 2026 404 FOUND. <br />
             Built with React.js & Node.js
           </p>
         </div>
 
         {/* Right Side: Contact Info */}
         <div style={styles.rightSection}>
-          <h4 style={{color: '#fff', marginBottom: '10px'}}>Contact Us</h4>
+          <h4 style={{ color: '#fff', marginBottom: '10px' }}>Contact Us</h4>
           <p><strong>Location:</strong> Penang, Malaysia</p>
           <p><strong>Email:</strong> hello@404found.tech</p>
           <p><strong>Phone:</strong> +60 12-345 6789</p>
@@ -33,7 +33,6 @@ const styles = {
   footer: {
     backgroundColor: '#000',
     padding: '60px 0',
-    borderTop: '1px solid #333',
     color: '#888',
     marginTop: 'auto',
   },

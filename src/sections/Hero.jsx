@@ -1,6 +1,7 @@
 // src/sections/Hero.jsx
 import React from 'react';
-import { Link } from 'react-scroll'; // <--- Import the scroller
+import { Link } from 'react-scroll';
+import { motion } from 'framer-motion';
 
 const Hero = () => {
   return (
@@ -10,37 +11,63 @@ const Hero = () => {
       <div style={styles.overlay}></div>
 
       <div className="container" style={styles.content}>
-        <h2 style={styles.subHeadline}>&lt; 404 Found /&gt;</h2>
-        <h1 style={styles.headline}>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false }}
+          transition={{ duration: 0.8 }}
+        >
+          <h2 style={styles.subHeadline}>&lt; 404 Found /&gt;</h2>
+        </motion.div>
+
+        <motion.h1
+          style={styles.headline}
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: false }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
           WE FIND THE SOLUTIONS <br />
           <span style={{ color: 'var(--primary)' }}>OTHERS CAN'T.</span>
-        </h1>
-        <p style={styles.description}>
+        </motion.h1>
+
+        <motion.p
+          style={styles.description}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: false }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
           Specializing in Software Engineering, IoT, and Modern Web Design.
           We turn your 404 errors into 200 OK.
-        </p>
-        
-        {/* UPDATED BUTTONS using react-scroll */}
-        <div style={styles.buttonGroup}>
-          <Link 
-            to="contact" 
-            smooth={true} 
-            duration={500} 
+        </motion.p>
+
+        <motion.div
+          style={styles.buttonGroup}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+        >
+          <Link
+            to="contact"
+            smooth={true}
+            duration={500}
             offset={-50}
             style={styles.primaryButton}
           >
             Start Project
           </Link>
-          
-          <Link 
-            to="services" 
-            smooth={true} 
-            duration={500} 
+
+          <Link
+            to="services"
+            smooth={true}
+            duration={500}
             style={styles.outlineButton}
           >
             Our Services
           </Link>
-        </div>
+        </motion.div>
 
       </div>
     </section>
@@ -67,9 +94,9 @@ const styles = {
       linear-gradient(rgba(0, 255, 65, 0.4) 1px, transparent 1px),
       linear-gradient(90deg, rgba(0, 255, 65, 0.4) 1px, transparent 1px)
     `,
-    backgroundSize: '30px 30px', 
+    backgroundSize: '30px 30px',
     zIndex: 0,
-    opacity: 0.6, 
+    opacity: 0.6,
   },
   overlay: {
     position: 'absolute',
@@ -77,7 +104,7 @@ const styles = {
     left: 0,
     width: '100%',
     height: '100%',
-    background: 'radial-gradient(circle at center, transparent 0%, #050505 90%)', 
+    background: 'radial-gradient(circle at center, transparent 0%, #050505 90%)',
     zIndex: 1,
   },
   content: {
@@ -94,7 +121,7 @@ const styles = {
     letterSpacing: '2px',
   },
   headline: {
-    fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', 
+    fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
     fontWeight: '800',
     lineHeight: '1.1',
     marginBottom: '20px',
