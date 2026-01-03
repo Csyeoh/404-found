@@ -1,11 +1,19 @@
-// src/sections/About.jsx
 import React from 'react';
 import { motion } from 'framer-motion';
+import futuristicVideo from '../assets/video/Futuristic_Video.mp4';
 
 const About = () => {
     return (
         <section id="about" style={styles.section}>
-            <div className="container" style={styles.container}>
+            {/* Video Background */}
+            <div style={styles.videoContainer}>
+                <video autoPlay loop muted playsInline style={styles.video}>
+                    <source src={futuristicVideo} type="video/mp4" />
+                </video>
+                <div style={styles.overlay}></div>
+            </div>
+
+            <div className="container" style={{ ...styles.container, ...styles.content }}>
                 <motion.div
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -60,6 +68,34 @@ const styles = {
         padding: '100px 0',
         backgroundColor: '#050505',
         color: '#fff',
+        position: 'relative',
+        overflow: 'hidden',
+    },
+    videoContainer: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: 0,
+    },
+    video: {
+        width: '100%',
+        height: '100%',
+        objectFit: 'cover',
+    },
+    overlay: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        backgroundColor: 'rgba(0, 0, 0, 0.8)', // Darker overlay for text readability
+        zIndex: 1,
+    },
+    content: {
+        position: 'relative',
+        zIndex: 2,
     },
     container: {
         maxWidth: '1200px',
@@ -82,7 +118,8 @@ const styles = {
         gap: '40px',
     },
     card: {
-        backgroundColor: '#111',
+        backgroundColor: 'rgba(17, 17, 17, 0.6)', // Semi-transparent
+        backdropFilter: 'blur(10px)', // Glassmorphism
         padding: '30px',
         borderRadius: '12px',
         borderLeft: '4px solid var(--primary)',
@@ -94,7 +131,7 @@ const styles = {
         color: '#fff',
     },
     text: {
-        color: '#a0a0a0',
+        color: '#ccc', // Lighter text for better contrast against video
         lineHeight: '1.7',
         fontSize: '1rem',
     },
