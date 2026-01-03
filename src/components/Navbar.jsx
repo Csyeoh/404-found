@@ -26,6 +26,7 @@ const Navbar = () => {
         <ul className="desktop-menu" style={styles.desktopMenu}>
           <li><Link to="home" smooth={true} duration={500} spy={true} activeClass="active" style={styles.link}>Home</Link></li>
           <li><Link to="about" smooth={true} duration={500} spy={true} activeClass="active" style={styles.link}>About</Link></li>
+          <li><Link to="products" smooth={true} duration={500} spy={true} activeClass="active" style={styles.link}>Products</Link></li>
           <li><Link to="services" smooth={true} duration={500} spy={true} activeClass="active" style={styles.link}>Services</Link></li>
           <li><Link to="team" smooth={true} duration={500} spy={true} activeClass="active" style={styles.link}>Team</Link></li>
           <li><Link to="contact" smooth={true} duration={500} offset={-50} style={styles.ctaButton}>Start Project</Link></li>
@@ -41,6 +42,7 @@ const Navbar = () => {
           <div style={styles.mobileMenu}>
             <Link to="home" smooth={true} duration={500} onClick={closeMenu} style={styles.mobileLink}>Home</Link>
             <Link to="about" smooth={true} duration={500} onClick={closeMenu} style={styles.mobileLink}>About</Link>
+            <Link to="products" smooth={true} duration={500} onClick={closeMenu} style={styles.mobileLink}>Products</Link>
             <Link to="services" smooth={true} duration={500} onClick={closeMenu} style={styles.mobileLink}>Services</Link>
             <Link to="team" smooth={true} duration={500} onClick={closeMenu} style={styles.mobileLink}>Team</Link>
             <Link to="contact" smooth={true} duration={500} offset={-50} onClick={closeMenu} style={styles.mobileCta}>Start Project</Link>

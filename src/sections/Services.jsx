@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code2, Globe, Cpu } from 'lucide-react'; // We installed these icons earlier
+import { Code2, Globe, Cpu } from 'lucide-react';
+import videoBg from '../assets/video/hero-bg.mp4';
 
 const Services = () => {
   const serviceList = [
@@ -53,7 +54,15 @@ const Services = () => {
 
   return (
     <section id="services" style={styles.section}>
-      <div className="container">
+      {/* Video Background */}
+      <div style={styles.videoContainer}>
+        <video autoPlay loop muted playsInline style={styles.video}>
+          <source src={videoBg} type="video/mp4" />
+        </video>
+        <div style={styles.overlay}></div>
+      </div>
+
+      <div className="container" style={styles.content}>
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -92,6 +101,34 @@ const styles = {
   section: {
     backgroundColor: '#0a0a0a',
     padding: '80px 0',
+    position: 'relative',
+    overflow: 'hidden',
+  },
+  videoContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    zIndex: 0,
+  },
+  video: {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+  },
+  overlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'rgba(0, 0, 0, 0.7)', // Dark overlay to make text readable
+    zIndex: 1,
+  },
+  content: {
+    position: 'relative',
+    zIndex: 2, // Ensure content is above the video and overlay
   },
   header: {
     fontSize: '2.5rem',
@@ -104,7 +141,8 @@ const styles = {
     gap: '30px',
   },
   card: {
-    backgroundColor: '#111', // Slightly lighter than background
+    backgroundColor: 'rgba(17, 17, 17, 0.8)', // Semi-transparent card background
+    backdropFilter: 'blur(10px)', // Glassmorphism effect
     padding: '30px',
     borderRadius: '12px',
     border: '1px solid #333',

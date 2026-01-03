@@ -3,6 +3,7 @@ import React from 'react';
 import Navbar from './components/Navbar';
 import Hero from './sections/Hero';
 import About from './sections/About';
+import Products from './sections/Products';
 import Services from './sections/Services';
 import Team from './sections/Team';
 import Contact from './sections/Contact';
@@ -16,6 +17,7 @@ function App() {
       {/* Main Content Sections */}
       <Hero />
       <About />
+      <Products />
       <Services />
       <Team />
       <Contact />

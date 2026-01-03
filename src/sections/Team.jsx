@@ -4,9 +4,9 @@ import { motion } from 'framer-motion';
 
 const teamMembers = [
   {
-    name: "Yeoh Chong Xiang",
+    name: "Yeoh Chong Siang",
     role: "Lead Full Stack Developer",
-    image: "https://ui-avatars.com/api/?name=Chong+Xiang&background=00ff41&color=000", // Fallback placeholder
+    image: "https://ui-avatars.com/api/?name=Chong+Siang&background=00ff41&color=000", // Fallback placeholder
     bio: "Specializes in React.js architecture and server-side logic with Node.js."
   },
   {
