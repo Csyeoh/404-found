@@ -4,8 +4,10 @@ import Navbar from './components/Navbar';
 import Hero from './sections/Hero';
 import About from './sections/About';
 import Products from './sections/Products';
+import Achievements from './sections/Achievements';
 import Services from './sections/Services';
 import Team from './sections/Team';
+import ClientFeedback from './sections/ClientFeedback';
 import Contact from './sections/Contact';
 import Footer from './components/Footer';
 
@@ -17,9 +19,11 @@ function App() {
       {/* Main Content Sections */}
       <Hero />
       <About />
+      <Achievements />
       <Products />
       <Services />
       <Team />
+      <ClientFeedback />
       <Contact />
 
       {/* Footer at the bottom */}

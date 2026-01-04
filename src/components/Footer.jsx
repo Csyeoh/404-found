@@ -11,7 +11,7 @@ const Footer = () => {
         <div style={styles.leftSection}>
           <h3 style={styles.brand}>404 FOUND</h3>
           <p style={styles.copy}>
-            &copy; 2026 404 FOUND. <br />
+            &copy; 2026 404 FOUND. All rights reserved. <br />
             Built with React.js & Node.js
           </p>
         </div>

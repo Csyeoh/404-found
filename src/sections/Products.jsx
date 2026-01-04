@@ -10,28 +10,28 @@ const products = [
         image: nexusImg,
         name: 'NexusFlow Gen1',
         category: 'Hardware',
-        price: '$299',
+        price: 'RM 299',
         desc: 'Next-gen IoT gateway ensuring seamless connectivity for all your smart devices.',
     },
     {
         image: cyberImg,
         name: 'CyberVault Pro',
         category: 'Software',
-        price: '$49/month',
+        price: 'RM 49/month',
         desc: 'Enterprise-grade encrypted cloud storage with AI-driven threat detection.',
     },
     {
         image: pulseImg,
         name: 'PulseAnalytics',
         category: 'SaaS',
-        price: '$99/month',
+        price: 'RM 99/month',
         desc: 'Real-time business intelligence dashboard. Vizualize your data beat by beat.',
     },
     {
         image: aegisImg,
         name: 'Aegis Firewall',
         category: 'Cybersecurity',
-        price: '$199/year',
+        price: 'RM 199/year',
         desc: 'The ultimate shield against digital intrusions. Keep your network impenetrable.',
     }
 ];
