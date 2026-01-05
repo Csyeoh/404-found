@@ -1,8 +1,17 @@
 // src/sections/Contact.jsx
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
 const Contact = () => {
+    const [isSubmitted, setIsSubmitted] = useState(false);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // Simulate network request
+        setTimeout(() => {
+            setIsSubmitted(true);
+        }, 500);
+    };
     return (
         <section id="contact" style={styles.section}>
             <div className="container" style={styles.container}>
@@ -25,23 +34,40 @@ const Contact = () => {
                     viewport={{ once: false }}
                     transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                    <form style={styles.form} onSubmit={(e) => e.preventDefault()}>
-                        <div style={styles.inputGroup}>
-                            <input type="text" placeholder="Name" style={styles.input} />
-                            <input type="email" placeholder="Email" style={styles.input} />
-                        </div>
-                        <input type="text" placeholder="Subject" style={styles.input} />
-                        <textarea placeholder="Tell us about your project..." rows="5" style={styles.textarea}></textarea>
-
-                        <motion.button
-                            type="submit"
-                            style={styles.button}
-                            whileHover={{ scale: 1.05, backgroundColor: '#00ff41', color: '#000' }}
-                            whileTap={{ scale: 0.95 }}
+                    {isSubmitted ? (
+                        <motion.div
+                            initial={{ scale: 0.8, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            style={styles.successMessage}
                         >
-                            Send Message
-                        </motion.button>
-                    </form>
+                            <h3 style={{ color: 'var(--primary)', marginBottom: '10px' }}>Message Received!</h3>
+                            <p>We'll get back to you within 24 hours.</p>
+                            <button
+                                style={{ ...styles.button, marginTop: '20px' }}
+                                onClick={() => setIsSubmitted(false)}
+                            >
+                                Send Another
+                            </button>
+                        </motion.div>
+                    ) : (
+                        <form style={styles.form} onSubmit={handleSubmit}>
+                            <div style={styles.inputGroup}>
+                                <input required type="text" placeholder="Name" style={styles.input} />
+                                <input required type="email" placeholder="Email" style={styles.input} />
+                            </div>
+                            <input required type="text" placeholder="Subject" style={styles.input} />
+                            <textarea required placeholder="Tell us about your project..." rows="5" style={styles.textarea}></textarea>
+
+                            <motion.button
+                                type="submit"
+                                style={styles.button}
+                                whileHover={{ scale: 1.05, backgroundColor: '#00ff41', color: '#000' }}
+                                whileTap={{ scale: 0.95 }}
+                            >
+                                Send Message
+                            </motion.button>
+                        </form>
+                    )}
 
                 </motion.div>
             </div>
@@ -140,6 +166,11 @@ const styles = {
     },
     infoText: {
         color: '#ccc',
+    },
+    successMessage: {
+        textAlign: 'center',
+        padding: '20px',
+        color: '#fff',
     }
 };
 

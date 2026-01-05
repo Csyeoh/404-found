@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import nexusImg from '../assets/picture/NexusFlow Gen1.png';
 import cyberImg from '../assets/picture/CyberVault Pro.png';
 import pulseImg from '../assets/picture/PulseAnalytics.png';
@@ -12,6 +12,7 @@ const products = [
         category: 'Hardware',
         price: 'RM 299',
         desc: 'Next-gen IoT gateway ensuring seamless connectivity for all your smart devices.',
+        details: 'Features dual-band Wi-Fi 6, Zigbee 3.0 support, and edge computing capabilities. Perfect for smart homes and industrial IoT applications.',
     },
     {
         image: cyberImg,
@@ -19,6 +20,7 @@ const products = [
         category: 'Software',
         price: 'RM 49/month',
         desc: 'Enterprise-grade encrypted cloud storage with AI-driven threat detection.',
+        details: 'Store your data with AES-256 encryption. Our AI monitors for ransomware and anomalies 24/7, ensuring your business never stops.',
     },
     {
         image: pulseImg,
@@ -26,6 +28,7 @@ const products = [
         category: 'SaaS',
         price: 'RM 99/month',
         desc: 'Real-time business intelligence dashboard. Vizualize your data beat by beat.',
+        details: 'Customizable widgets, real-time data streaming, and predictive analytics powered by machine learning. Make data-driven decisions instantly.',
     },
     {
         image: aegisImg,
@@ -33,10 +36,13 @@ const products = [
         category: 'Cybersecurity',
         price: 'RM 199/year',
         desc: 'The ultimate shield against digital intrusions. Keep your network impenetrable.',
+        details: 'Next-generation firewall with deep packet inspection, intrusion prevention system (IPS), and automated threat containment.',
     }
 ];
 
 const Products = () => {
+    const [selectedProduct, setSelectedProduct] = useState(null);
+
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
@@ -86,7 +92,12 @@ const Products = () => {
                             <p style={styles.desc}>{product.desc}</p>
                             <div style={styles.footer}>
                                 <span style={styles.price}>{product.price}</span>
-                                <button style={styles.button}>Details</button>
+                                <button
+                                    style={styles.button}
+                                    onClick={() => setSelectedProduct(product)}
+                                >
+                                    Details
+                                </button>
                             </div>
                         </motion.div>
                     ))}
@@ -102,6 +113,34 @@ const Products = () => {
                     <p>More innovative products coming in the future...</p>
                 </motion.div>
             </div>
+
+            <AnimatePresence>
+                {selectedProduct && (
+                    <motion.div
+                        style={styles.modalOverlay}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        onClick={() => setSelectedProduct(null)}
+                    >
+                        <motion.div
+                            style={styles.modalContent}
+                            initial={{ y: 50, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            exit={{ y: 50, opacity: 0 }}
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <img src={selectedProduct.image} alt={selectedProduct.name} style={styles.modalImage} />
+                            <h3 style={styles.modalTitle}>{selectedProduct.name}</h3>
+                            <p style={styles.modalCategory}>{selectedProduct.category}</p>
+                            <p style={styles.modalDesc}>{selectedProduct.desc}</p>
+                            <hr style={{ borderColor: '#333', margin: '15px 0' }} />
+                            <p style={styles.modalDetails}>{selectedProduct.details}</p>
+                            <button style={styles.closeButton} onClick={() => setSelectedProduct(null)}>Close</button>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </section>
     );
 };
@@ -200,6 +239,68 @@ const styles = {
         fontSize: '1.1rem',
         fontStyle: 'italic',
         letterSpacing: '1px',
+    },
+    modalOverlay: {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        backgroundColor: 'rgba(0,0,0,0.8)',
+        zIndex: 2000,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: '20px',
+        backdropFilter: 'blur(5px)',
+    },
+    modalContent: {
+        backgroundColor: '#1a1a1a',
+        padding: '30px',
+        borderRadius: '16px',
+        maxWidth: '500px',
+        width: '100%',
+        border: '1px solid var(--primary)',
+        boxShadow: '0 0 20px rgba(0, 255, 65, 0.2)',
+        position: 'relative',
+    },
+    modalImage: {
+        width: '100%',
+        height: '200px',
+        objectFit: 'cover',
+        borderRadius: '8px',
+        marginBottom: '20px',
+    },
+    modalTitle: {
+        color: 'var(--primary)',
+        fontSize: '1.8rem',
+        marginBottom: '5px',
+    },
+    modalCategory: {
+        color: '#888',
+        fontSize: '0.9rem',
+        textTransform: 'uppercase',
+        marginBottom: '15px',
+    },
+    modalDesc: {
+        color: '#fff',
+        marginBottom: '10px',
+    },
+    modalDetails: {
+        color: '#ccc',
+        lineHeight: '1.6',
+        fontSize: '0.95rem',
+        marginBottom: '20px',
+    },
+    closeButton: {
+        backgroundColor: 'transparent',
+        border: '1px solid #555',
+        color: '#fff',
+        padding: '10px 20px',
+        borderRadius: '5px',
+        cursor: 'pointer',
+        float: 'right',
+        transition: 'background 0.3s',
     }
 };
 

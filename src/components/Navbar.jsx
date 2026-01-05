@@ -18,7 +18,7 @@ const Navbar = () => {
         {/* Logo */}
         <div style={styles.logo}>
           <Link to="home" smooth={true} duration={500} style={{ cursor: 'pointer' }}>
-            <span style={{ color: 'var(--primary)' }}>404</span> FOUND
+            <span className="glitch" data-text="404" style={{ color: 'var(--primary)' }}>404</span> FOUND
           </Link>
         </div>
 
