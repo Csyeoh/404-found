@@ -6,6 +6,7 @@ import About from './sections/About';
 import Products from './sections/Products';
 import Achievements from './sections/Achievements';
 import Services from './sections/Services';
+import VideoShowcase from './sections/VideoShowcase';
 import Team from './sections/Team';
 import ClientFeedback from './sections/ClientFeedback';
 import Contact from './sections/Contact';
@@ -22,6 +23,7 @@ function App() {
       <Achievements />
       <Products />
       <Services />
+      <VideoShowcase />
       <Team />
       <ClientFeedback />
       <Contact />
