@@ -1,5 +1,7 @@
+//
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { X } from 'lucide-react'; // Imported X icon
 import nexusImg from '../assets/picture/NexusFlow Gen1.png';
 import cyberImg from '../assets/picture/CyberVault Pro.png';
 import pulseImg from '../assets/picture/PulseAnalytics.png';
@@ -130,13 +132,22 @@ const Products = () => {
                             exit={{ y: 50, opacity: 0 }}
                             onClick={(e) => e.stopPropagation()}
                         >
+                            {/* X Button at Top Right */}
+                            <button 
+                                style={styles.closeButtonX} 
+                                onClick={() => setSelectedProduct(null)}
+                            >
+                                <X size={24} />
+                            </button>
+
                             <img src={selectedProduct.image} alt={selectedProduct.name} style={styles.modalImage} />
                             <h3 style={styles.modalTitle}>{selectedProduct.name}</h3>
                             <p style={styles.modalCategory}>{selectedProduct.category}</p>
                             <p style={styles.modalDesc}>{selectedProduct.desc}</p>
                             <hr style={{ borderColor: '#333', margin: '15px 0' }} />
                             <p style={styles.modalDetails}>{selectedProduct.details}</p>
-                            <button style={styles.closeButton} onClick={() => setSelectedProduct(null)}>Close</button>
+                            
+                            {/* Removed the bottom 'Close' button as requested */}
                         </motion.div>
                     </motion.div>
                 )}
@@ -164,7 +175,7 @@ const styles = {
     },
     card: {
         backgroundColor: '#111',
-        padding: '20px', // Replaced padding
+        padding: '20px', 
         borderRadius: '16px',
         border: '1px solid #222',
         position: 'relative',
@@ -172,11 +183,11 @@ const styles = {
         flexDirection: 'column',
         alignItems: 'flex-start',
         cursor: 'pointer',
-        overflow: 'hidden', // Added overflow hidden
+        overflow: 'hidden', 
     },
     imageWrapper: {
         width: '100%',
-        height: '200px', // Fixed height for images
+        height: '200px', 
         marginBottom: '20px',
         borderRadius: '12px',
         overflow: 'hidden',
@@ -292,15 +303,21 @@ const styles = {
         fontSize: '0.95rem',
         marginBottom: '20px',
     },
-    closeButton: {
+    // New X Button Style
+    closeButtonX: {
+        position: 'absolute',
+        top: '0px',
+        right: '1px',
         backgroundColor: 'transparent',
-        border: '1px solid #555',
+        border: 'none',
         color: '#fff',
-        padding: '10px 20px',
-        borderRadius: '5px',
         cursor: 'pointer',
-        float: 'right',
-        transition: 'background 0.3s',
+        padding: '5px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        transition: 'color 0.3s',
+        zIndex: 10
     }
 };
 
