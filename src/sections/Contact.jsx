@@ -1,9 +1,26 @@
 // src/sections/Contact.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const Contact = () => {
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
+
+    // Check for mobile screen size
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+        
+        // Check on initial load
+        checkMobile();
+        
+        // Add listener for window resize
+        window.addEventListener('resize', checkMobile);
+        
+        // Cleanup listener
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -12,6 +29,7 @@ const Contact = () => {
             setIsSubmitted(true);
         }, 500);
     };
+
     return (
         <section id="contact" style={styles.section}>
             <div className="container" style={styles.container}>
@@ -43,7 +61,7 @@ const Contact = () => {
                             <h3 style={{ color: 'var(--primary)', marginBottom: '10px' }}>Message Received!</h3>
                             <p>We'll get back to you within 24 hours.</p>
                             <button
-                                style={{ ...styles.button, marginTop: '20px' }}
+                                style={{ ...styles.button, marginTop: '20px', alignSelf: 'center' }}
                                 onClick={() => setIsSubmitted(false)}
                             >
                                 Send Another
@@ -52,7 +70,6 @@ const Contact = () => {
                     ) : (
                         <form style={styles.form} onSubmit={handleSubmit}>
                             <div style={styles.inputGroup}>
-                                {/* CHANGED: Added flex: 1 to make them share width equally */}
                                 <input required type="text" placeholder="Name" style={{...styles.input, flex: 1}} />
                                 <input required type="email" placeholder="Email" style={{...styles.input, flex: 1}} />
                             </div>
@@ -61,7 +78,12 @@ const Contact = () => {
 
                             <motion.button
                                 type="submit"
-                                style={styles.button}
+                                // Dynamic style: Check if mobile to center, otherwise keep right aligned
+                                style={{ 
+                                    ...styles.button, 
+                                    alignSelf: isMobile ? 'center' : 'flex-end',
+                                    width: isMobile ? '100%' : 'auto' // Optional: Makes button full width on phone for better UX
+                                }}
                                 whileHover={{ scale: 1.05, backgroundColor: '#00ff41', color: '#000' }}
                                 whileTap={{ scale: 0.95 }}
                             >
@@ -114,6 +136,7 @@ const styles = {
     inputGroup: {
         display: 'flex',
         gap: '20px',
+        flexWrap: 'wrap', // Added wrap for mobile responsiveness
     },
     input: {
         width: '100%',
@@ -137,7 +160,6 @@ const styles = {
         resize: 'vertical',
     },
     button: {
-        alignSelf: 'flex-end',
         padding: '15px 40px',
         backgroundColor: 'transparent',
         border: '1px solid var(--primary)',
@@ -147,31 +169,15 @@ const styles = {
         borderRadius: '8px',
         cursor: 'pointer',
         transition: 'all 0.3s ease',
-    },
-    info: {
-        display: 'flex',
-        justifyContent: 'space-around',
-        marginTop: '20px',
-        flexWrap: 'wrap',
-        gap: '20px',
-        borderTop: '1px solid #222',
-        paddingTop: '30px',
-    },
-    infoItem: {
-        textAlign: 'center',
-    },
-    infoTitle: {
-        color: 'var(--primary)',
-        marginBottom: '10px',
-        fontFamily: 'monospace',
-    },
-    infoText: {
-        color: '#ccc',
+        // Note: alignSelf is handled dynamically in the component now
     },
     successMessage: {
         textAlign: 'center',
         padding: '20px',
         color: '#fff',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
     }
 };
 
