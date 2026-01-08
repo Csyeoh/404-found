@@ -12,7 +12,8 @@ import junYouImg from '../assets/picture/Alvin Teh Jun You.jpg';
 const teamMembers = [
   {
     name: "Yeoh Chong Siang",
-    role: "Lead Full Stack Developer",
+    role: "Chief Executive Officer",
+    subRole: "Lead Full Stack Developer", // Added Sub-role
     image: chongSiangImg,
     bio: "Specializes in React.js architecture and server-side logic with Node.js."
   },
@@ -94,7 +95,15 @@ const Team = () => {
               </div>
 
               <h3 style={styles.name}>{member.name}</h3>
+              
+              {/* Primary Role */}
               <p style={styles.role}>{member.role}</p>
+              
+              {/* Sub Role (Only renders if it exists) */}
+              {member.subRole && (
+                <p style={styles.subRole}>{member.subRole}</p>
+              )}
+
               <p style={styles.bio}>{member.bio}</p>
             </motion.div>
           ))}
@@ -106,7 +115,7 @@ const Team = () => {
 
 const styles = {
   section: {
-    backgroundColor: '#050505', // Darker background for contrast
+    backgroundColor: '#050505',
     padding: '80px 0',
   },
   header: {
@@ -134,15 +143,15 @@ const styles = {
     height: '120px',
     borderRadius: '50%',
     overflow: 'hidden',
-    margin: '0 auto 15px auto', // Slightly reduced bottom margin
+    margin: '0 auto 15px auto',
     border: '3px solid var(--primary)',
   },
   img: {
     width: '100%',
     height: '100%',
     objectFit: 'cover',
-    objectPosition: 'center', // Ensures content is centered
-    display: 'block', // Removes inline whitespace
+    objectPosition: 'center',
+    display: 'block',
   },
   name: {
     fontSize: '1.5rem',
@@ -150,10 +159,16 @@ const styles = {
     color: '#fff',
   },
   role: {
-    color: 'var(--primary)', // Green text for role
+    color: 'var(--primary)', 
     fontWeight: 'bold',
-    fontFamily: 'monospace',
-    marginBottom: '15px',
+    fontFamily: 'monospace', // Kept your font
+    marginBottom: '5px',     // Reduced margin so the sub-role sits closer
+  },
+  subRole: {
+    color: '#fff',           // White to differentiate from the green CEO title
+    fontSize: '0.9rem',      // Slightly smaller
+    fontFamily: 'monospace', // Kept your font
+    marginBottom: '15px',    // This pushes the bio down now
   },
   bio: {
     color: '#aaa',
