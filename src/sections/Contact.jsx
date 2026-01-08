@@ -52,8 +52,9 @@ const Contact = () => {
                     ) : (
                         <form style={styles.form} onSubmit={handleSubmit}>
                             <div style={styles.inputGroup}>
-                                <input required type="text" placeholder="Name" style={styles.input} />
-                                <input required type="email" placeholder="Email" style={styles.input} />
+                                {/* CHANGED: Added flex: 1 to make them share width equally */}
+                                <input required type="text" placeholder="Name" style={{...styles.input, flex: 1}} />
+                                <input required type="email" placeholder="Email" style={{...styles.input, flex: 1}} />
                             </div>
                             <input required type="text" placeholder="Subject" style={styles.input} />
                             <textarea required placeholder="Tell us about your project..." rows="5" style={styles.textarea}></textarea>

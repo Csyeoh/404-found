@@ -1,3 +1,7 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 /* src/index.css */
 :root {
   --primary: #00ff41;
