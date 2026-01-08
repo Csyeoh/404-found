@@ -1,11 +1,37 @@
 // src/sections/Hero.jsx
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-scroll';
 import { motion } from 'framer-motion';
 
 const Hero = () => {
+  const [text, setText] = useState('');
+  const fullText = "< 404 Found />";
+
+  useEffect(() => {
+    let index = 0;
+    const intervalId = setInterval(() => {
+      setText(fullText.slice(0, index + 1));
+      index++;
+      if (index > fullText.length) {
+        clearInterval(intervalId);
+      }
+    }, 150); // Typing speed
+
+    return () => clearInterval(intervalId);
+  }, []);
+
   return (
     <section id="home" style={styles.section}>
+      {/* Inject Keyframes for Blinking Cursor */}
+      <style>
+        {`
+          @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+          }
+        `}
+      </style>
+
       {/* Animated Cyber Grid Background */}
       <div style={styles.gridBg}></div>
       <div style={styles.overlay}></div>
@@ -17,7 +43,10 @@ const Hero = () => {
           viewport={{ once: false }}
           transition={{ duration: 0.8 }}
         >
-          <h2 style={styles.subHeadline}>&lt; 404 Found /&gt;</h2>
+          <h2 style={styles.subHeadline}>
+            {text}
+            <span style={styles.cursor}>_</span>
+          </h2>
         </motion.div>
 
         <motion.h1
@@ -119,6 +148,15 @@ const styles = {
     fontSize: '1.2rem',
     marginBottom: '10px',
     letterSpacing: '2px',
+    minHeight: '1.5em',
+  },
+  cursor: {
+    display: 'inline-block',
+    // Uses the 'blink' keyframes defined in the component
+    animation: 'blink 1s infinite', 
+    color: 'var(--primary)',
+    marginLeft: '5px',
+    fontWeight: 'bold',
   },
   headline: {
     fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
@@ -148,8 +186,8 @@ const styles = {
     textDecoration: 'none',
     borderRadius: '4px',
     transition: 'transform 0.2s',
-    cursor: 'pointer', // Ensure cursor is a pointer
-    display: 'inline-block' // Fixes layout for Link components
+    cursor: 'pointer',
+    display: 'inline-block'
   },
   outlineButton: {
     padding: '15px 35px',
